@@ -1,4 +1,7 @@
 
+using LibraryManager.Application.Services;
+using LibraryManager.Infrastructure.Services;
+
 namespace LibraryManager.Api
 {
     public class Program
@@ -7,6 +10,11 @@ namespace LibraryManager.Api
         {
             var builder = WebApplication.CreateBuilder(args);
             {
+                builder.Services
+                    .AddApplication()
+                    .AddInfrastructure();
+
+
                 builder.Services.AddControllers();
             }
 
