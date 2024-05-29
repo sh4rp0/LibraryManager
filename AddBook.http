@@ -1,0 +1,6 @@
+@LibraryManager.Api_HostAddress = http://localhost:5066
+
+POST {{LibraryManager.Api_HostAddress}}/book/
+Accept: application/json
+
+###

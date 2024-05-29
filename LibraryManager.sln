@@ -11,6 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Domain", "LibraryManager.Domain\LibraryManager.Domain.csproj", "{CA5EAAAC-0F2B-46C4-8880-D5CC67936ADA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{36B4A825-4F9F-4B94-B758-917C0294E9A5}"
+	ProjectSection(SolutionItems) = preProject
+		AddBook.http = AddBook.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E292915A-5EE1-4DD2-BFAB-BC68C4020C5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Contracts", "LibraryManager.Contracts\LibraryManager.Contracts.csproj", "{F9515441-26FA-4250-BC4C-654738AA01DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +42,10 @@ Global
 		{CA5EAAAC-0F2B-46C4-8880-D5CC67936ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA5EAAAC-0F2B-46C4-8880-D5CC67936ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA5EAAAC-0F2B-46C4-8880-D5CC67936ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9515441-26FA-4250-BC4C-654738AA01DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9515441-26FA-4250-BC4C-654738AA01DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9515441-26FA-4250-BC4C-654738AA01DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9515441-26FA-4250-BC4C-654738AA01DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
