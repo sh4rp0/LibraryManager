@@ -19,6 +19,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E292915A-5EE1-4DD2-BFAB-BC68C4020C5E}"
 	ProjectSection(SolutionItems) = preProject
 		Api.md = Api.md
+		DomainModels.md = DomainModels.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Contracts", "LibraryManager.Contracts\LibraryManager.Contracts.csproj", "{F9515441-26FA-4250-BC4C-654738AA01DB}"
