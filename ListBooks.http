@@ -1,0 +1,5 @@
+@host = http://localhost:5066
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNzdjOTVkMi0xZGRhLTRjZDMtOGUyOC1kOGVjY2U4YTg0YjAiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiMjM2OTQ0MTUtMWQ2Zi00MGM0LThlNDItNjViOThmM2IzYmI2IiwiZXhwIjoxNzE3NDQ2OTU1LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.ztHtI646KZ6W1PMPf5qk707_sdzVCEgSYDpppBJVlRA
+
+GET {{host}}/books
+Authorization: Bearer {{token}}

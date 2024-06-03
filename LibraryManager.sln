@@ -30,6 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 		Register.http = Register.http
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Books", "Books", "{DCE90E7C-4107-4406-878F-DD39213F64D7}"
+	ProjectSection(SolutionItems) = preProject
+		ListBooks.http = ListBooks.http
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +67,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99A107F4-C891-4934-90DB-7E8B17FF02A5} = {36B4A825-4F9F-4B94-B758-917C0294E9A5}
+		{DCE90E7C-4107-4406-878F-DD39213F64D7} = {36B4A825-4F9F-4B94-B758-917C0294E9A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AF88F65-9A88-42AC-B050-FB720194D438}

@@ -18,9 +18,11 @@ namespace LibraryManager.Api
             var app = builder.Build();
             {
                 app.UseExceptionHandler("/error");
-                app.UseHttpsRedirection();
-                app.MapControllers();
 
+                app.UseHttpsRedirection();
+                app.UseAuthentication();
+                app.UseAuthorization();
+                app.MapControllers();
                 app.Run();
             }
         }

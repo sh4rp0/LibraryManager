@@ -33,6 +33,7 @@ public class RegisterCommandHandler :
         // 2. Create a user (genereate unique ID) & persist to Db
         var user = new User
         {
+            Id = Guid.NewGuid(),
             FirstName = command.FirstName,
             LastName = command.LastName,
             Email = command.Email,
