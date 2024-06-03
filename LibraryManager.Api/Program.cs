@@ -1,6 +1,6 @@
 
 using LibraryManager.Api.Middleware;
-using LibraryManager.Application.Services;
+using LibraryManager.Application;
 using LibraryManager.Infrastructure.Services;
 
 namespace LibraryManager.Api
