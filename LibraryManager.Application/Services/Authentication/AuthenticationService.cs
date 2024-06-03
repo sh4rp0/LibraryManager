@@ -1,6 +1,8 @@
 ﻿using LibraryManager.Application.Common.Interfaces.Authentication;
 using LibraryManager.Application.Common.Interfaces.Persistence;
 using LibraryManager.Domain.Entities;
+using ErrorOr;
+using LibraryManager.Domain.Common.Errors;
 
 namespace LibraryManager.Application.Services.Authentication;
 
@@ -15,12 +17,12 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
         // 1. Validate the user doesn't exist
         if(_userRepository.GetUserByEmail(email) is not null)
         {
-            throw new Exception("User with given email already exists.");
+            return Errors.User.DuplicateEmail;
         }
 
         // 2. Create a user (genereate unique ID) & persist to Db
@@ -44,19 +46,22 @@ public class AuthenticationService : IAuthenticationService
             token);
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public ErrorOr<AuthenticationResult> Login(string email, string password)
     {
         // 1. Validate the user exists
         if (_userRepository.GetUserByEmail(email) is not User user)
         {
-            throw new Exception("User with given email already exists.");
+            return Errors.Authentication.InvalidCredentials;
         }
 
         // 2. Validate the password is correct
         if (user.Password != password)
         {
-            throw new Exception("Invalid password");
+            return Errors.Authentication.InvalidCredentials;
         }
+
+        // random error simulation
+        throw new Exception("Test random exception");
 
         // 3. Create JWT token
         var token = _jwtTokenGenerator.GenerateToken(user);
