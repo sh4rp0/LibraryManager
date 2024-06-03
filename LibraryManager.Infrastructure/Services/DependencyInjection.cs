@@ -1,6 +1,8 @@
 ﻿using LibraryManager.Application.Common.Interfaces.Authentication;
+using LibraryManager.Application.Common.Interfaces.Persistence;
 using LibraryManager.Application.Common.Interfaces.Services;
 using LibraryManager.Infrastructure.Authentication;
+using LibraryManager.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +18,8 @@ public static class DependencyInjection
 
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 }

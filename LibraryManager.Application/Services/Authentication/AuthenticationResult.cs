@@ -1,8 +1,7 @@
-﻿namespace LibraryManager.Application.Services;
+﻿using LibraryManager.Domain.Entities;
+
+namespace LibraryManager.Application.Services;
 
 public record AuthenticationResult(
-    Guid Id,
-    string FirstName,
-    string LastName,
-    string Email,
+    User User,
     string Token);

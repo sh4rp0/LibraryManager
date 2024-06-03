@@ -3,6 +3,26 @@
 - [LibraryManager API](#library-manager-api)
   - [Auth](#auth)	
 
+## Login
+
+```
+POST {{host}}/auth/login
+```
+
+
+### Login Request
+
+```json
+{
+	"email": "matus@zaprazny.com",
+    "password": "Matus123!"
+}
+```
+
+```js
+200 OK
+```
+
 #### Login Response
 
 ```json

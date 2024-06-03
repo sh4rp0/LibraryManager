@@ -1,6 +1,8 @@
-﻿namespace LibraryManager.Application.Common.Interfaces.Authentication;
+﻿using LibraryManager.Domain.Entities;
+
+namespace LibraryManager.Application.Common.Interfaces.Authentication;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Guid userId, string firstName, string lastName);
+    string GenerateToken(User user);
 }
