@@ -4,6 +4,7 @@ using LibraryManager.Application.Authentication.Common;
 using LibraryManager.Application.Authentication.Queries.Login;
 using LibraryManager.Contracts.Authentication;
 using LibraryManager.Domain.Common.Errors;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -14,21 +15,23 @@ namespace LibraryManager.Api.Controllers;
 public class AuthenticationController : ApiController
 {
     private readonly ISender _mediator;
+    private readonly IMapper _mapper;
 
-    public AuthenticationController(IMediator mediator, ProblemDetailsFactory problemDatailsFactory) : base(problemDatailsFactory)
+    public AuthenticationController(IMediator mediator, IMapper mapper, ProblemDetailsFactory problemDatailsFactory) : base(problemDatailsFactory)
     {
         _mediator = mediator;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+        var command = _mapper.Map<RegisterCommand>(request);
 
         ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
 
         return authResult.Match(
-            authResult => Ok(MapAuthResult(authResult)),
+            authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             errors => Problem(errors)
         );
     }
@@ -36,7 +39,7 @@ public class AuthenticationController : ApiController
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
-        var query = new LoginQuery(request.Email, request.Password);
+        var query = _mapper.Map<LoginQuery>(request);
         ErrorOr<AuthenticationResult> authResult = await _mediator.Send(query);
 
         if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
@@ -47,19 +50,7 @@ public class AuthenticationController : ApiController
         }
 
         return authResult.Match(
-            authResult => Ok(MapAuthResult(authResult)),
+            authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             errors => Problem(errors));
-    }
-
-    private AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
-    {
-        var response = new AuthenticationResponse(
-                    authResult.User.Id,
-                    authResult.User.FirstName,
-                    authResult.User.LastName,
-                    authResult.User.Email,
-                    authResult.Token);
-
-        return response;
     }
 }

@@ -1,7 +1,5 @@
-
-using LibraryManager.Api.Middleware;
 using LibraryManager.Application;
-using LibraryManager.Infrastructure.Services;
+using LibraryManager.Infrastructure;
 
 namespace LibraryManager.Api
 {
@@ -12,12 +10,9 @@ namespace LibraryManager.Api
             var builder = WebApplication.CreateBuilder(args);
             {
                 builder.Services
+                    .AddPresentation()
                     .AddApplication()
                     .AddInfrastructure(builder.Configuration);
-
-                //builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-                builder.Services.AddProblemDetails();
-                builder.Services.AddControllers();
             }
 
             var app = builder.Build();
