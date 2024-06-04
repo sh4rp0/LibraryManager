@@ -18,4 +18,10 @@ public class UserInMemoryRepository : IUserRepository
         await Task.CompletedTask;
         return _users.SingleOrDefault(u => u.Email == email);
     }
+
+    public async Task<User?> GetUserByIdAsync(Guid id)
+    {
+        await Task.CompletedTask;
+        return _users.SingleOrDefault(u => u.Id == id);
+    }
 }

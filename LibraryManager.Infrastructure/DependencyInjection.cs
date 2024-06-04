@@ -31,6 +31,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUserRepository, UserEFRepository>();
         services.AddScoped<IBookRepository, BookEFRepository>();
+        services.AddScoped<IBorrowingRepository, BorrowingEFRepository>();
         return services;
     }
 

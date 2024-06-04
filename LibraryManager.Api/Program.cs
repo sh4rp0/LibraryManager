@@ -11,7 +11,7 @@ namespace LibraryManager.Api
             {
                 builder.Services
                     .AddPresentation()
-                    .AddApplication()
+                    .AddApplication(builder.Configuration)
                     .AddInfrastructure(builder.Configuration);
             }
 
