@@ -1,24 +1,28 @@
 @host = http://localhost:5066
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNDY2ODFkNy1hMWQzLTQwOGYtYTk0Ny04OWUzOGUyMTAxMzQiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiZTNjOGMyYjAtMWRmMy00ZWIxLWI1OTYtYzQxNGRhZTU2YWI4IiwiZXhwIjoxNzE3NTE1NDgxLCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.vUHfK6BvY7dw5tPTDLAggKEcqO8hqYV6DozetJk0Wfw
 
-POST {{host}}/books
+@id1 = 1
+PUT {{host}}/books/{{id1}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
+    "id": {{id1}},
     "title": "Alica v krajine zazrakov",
     "description": "Zaujimava poviedka",
-    "author": "Lewis Carroll",
+    "author": "James Carrol",
     "isbn": "123-456-789-X",
     "totalCopies": 26
 }
 
 ###
-POST {{host}}/books
+@id2 = 2
+PUT {{host}}/books/{{id2}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
+    "id": {{id2}},
     "title": "Móricko na ceste do sveta Simpanzov",
     "description": "",
     "author": "Devin Black",

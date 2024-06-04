@@ -12,9 +12,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Domain", "LibraryManager.Domain\LibraryManager.Domain.csproj", "{CA5EAAAC-0F2B-46C4-8880-D5CC67936ADA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{36B4A825-4F9F-4B94-B758-917C0294E9A5}"
-	ProjectSection(SolutionItems) = preProject
-		AddBook.http = AddBook.http
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E292915A-5EE1-4DD2-BFAB-BC68C4020C5E}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,7 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Books", "Books", "{DCE90E7C-4107-4406-878F-DD39213F64D7}"
 	ProjectSection(SolutionItems) = preProject
+		AddBook.http = AddBook.http
+		DeleteBook.http = DeleteBook.http
+		GetBookById.http = GetBookById.http
 		ListBooks.http = ListBooks.http
+		UpdateBook.http = UpdateBook.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Borrowing", "Borrowing", "{5E377E99-6C2E-40B8-93FD-6BC9767BA8A8}"
+	ProjectSection(SolutionItems) = preProject
+		BorrowBook.http = BorrowBook.http
+		ReturnBook.http = ReturnBook.http
 	EndProjectSection
 EndProject
 Global
@@ -68,6 +75,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{99A107F4-C891-4934-90DB-7E8B17FF02A5} = {36B4A825-4F9F-4B94-B758-917C0294E9A5}
 		{DCE90E7C-4107-4406-878F-DD39213F64D7} = {36B4A825-4F9F-4B94-B758-917C0294E9A5}
+		{5E377E99-6C2E-40B8-93FD-6BC9767BA8A8} = {36B4A825-4F9F-4B94-B758-917C0294E9A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AF88F65-9A88-42AC-B050-FB720194D438}

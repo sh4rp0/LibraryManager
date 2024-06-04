@@ -1,0 +1,7 @@
+@host = http://localhost:5066
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNDY2ODFkNy1hMWQzLTQwOGYtYTk0Ny04OWUzOGUyMTAxMzQiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiNmM4NTI1ODktODYzNi00NTQzLThhODMtNGExNzY2ZGIwMWZkIiwiZXhwIjoxNzE3NTE1NzU4LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.xrl0trQRHTGZk7hckFzd4XxLrZ6D2RGlja0Aeiuscjo
+
+@id = 1
+
+DELETE {{host}}/books/{{id}}
+Authorization: Bearer {{token}}
