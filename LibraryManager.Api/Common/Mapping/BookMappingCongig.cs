@@ -13,6 +13,10 @@ namespace LibraryManager.Api.Common.Mapping
                 .Map(dest => dest.ISBN, src => src.ISBN)
                 .Map(dest => dest.Description, src => src.Description);
 
+            config.NewConfig<UpdateBookRequest, UpdateCommand>()
+                .Map(dest => dest.ISBN, src => src.ISBN)
+                .Map(dest => dest.Description, src => src.Description);
+
             config.NewConfig<Book, BookResponse>()
                 .Map(dest => dest.ISBN, src => src.ISBN)
                 .Map(dest => dest.Description, src => src.Description);

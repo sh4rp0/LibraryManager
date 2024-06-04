@@ -21,7 +21,7 @@ public class CreateCommandHandler : IRequestHandler<CreateCommand, ErrorOr<Book>
     public async Task<ErrorOr<Book>> Handle(CreateCommand request, CancellationToken cancellationToken)
     {
         // Check if book already exists
-        if(_bookRepository.GetBookByTitleAndAuthor(request.Title, request.Author).Any())
+        if((await _bookRepository.GetBookByTitleAndAuthorAsync(request.Title, request.Author)).Any())
         {
             return Errors.Book.DuplicateBook;
         }
@@ -37,6 +37,6 @@ public class CreateCommandHandler : IRequestHandler<CreateCommand, ErrorOr<Book>
             UpdatedDateTime = _dateTimeProvider.UtcNow,
         };
 
-        return _bookRepository.AddBook(newBook);
+        return await _bookRepository.AddBookAsync(newBook);
     }
 }

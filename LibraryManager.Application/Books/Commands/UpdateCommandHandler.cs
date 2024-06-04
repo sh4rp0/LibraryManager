@@ -21,7 +21,7 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand, ErrorOr<Book>
     public async Task<ErrorOr<Book>> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
         // Check if book already exists
-        var book = _bookRepository.GetBookById(request.Id);
+        var book = await _bookRepository.GetBookByIdAsync(request.Id);
 
         if (book is null)
         {
@@ -35,7 +35,7 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand, ErrorOr<Book>
         book.TotalCopies = request.TotalCopies;
         book.UpdatedDateTime = _dateTimeProvider.UtcNow;
 
-        var result = _bookRepository.UpdateBook(book);
+        var result = await _bookRepository.UpdateBookAsync(book);
 
         return result;
     }

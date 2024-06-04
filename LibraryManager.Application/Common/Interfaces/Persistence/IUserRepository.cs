@@ -4,7 +4,7 @@ namespace LibraryManager.Application.Common.Interfaces.Persistence;
 
 public interface IUserRepository
 {
-    User? GetUserByEmail(string email);
+    Task<User?> GetUserByEmailAsync(string email);
 
-    void Add(User user);
+    Task AddAsync(User user);
 }

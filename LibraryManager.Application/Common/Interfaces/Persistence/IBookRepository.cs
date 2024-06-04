@@ -4,14 +4,14 @@ namespace LibraryManager.Application.Common.Interfaces.Persistence
 {
     public interface IBookRepository
     {
-        public Book AddBook(Book book);
+        public Task<Book> AddBookAsync(Book book);
 
-        public Book? GetBookById(int id);
+        public Task<Book?> GetBookByIdAsync(int id);
 
-        public Book UpdateBook(Book book);
+        public Task<Book> UpdateBookAsync(Book book);
 
-        public void DeleteBook(int id);
+        public Task DeleteBookAsync(int id);
 
-        public List<Book> GetBookByTitleAndAuthor(string title, string Author);
+        public Task<List<Book>> GetBookByTitleAndAuthorAsync(string title, string Author);
     }
 }

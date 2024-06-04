@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="BookBorrowing\" />
+    <Folder Include="Common\Services\" />
   </ItemGroup>
 
 </Project>

@@ -2,9 +2,11 @@
 using LibraryManager.Application.Common.Interfaces.Persistence;
 using LibraryManager.Application.Common.Interfaces.Services;
 using LibraryManager.Infrastructure.Authentication;
-using LibraryManager.Infrastructure.Persistence;
+using LibraryManager.Infrastructure.Persistence.EntityFramework;
+using LibraryManager.Infrastructure.Persistence.InMemory;
 using LibraryManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -22,8 +24,13 @@ public static class DependencyInjection
         services.AddAuth(configuration);
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IBookRepository, BookRepository>();
+        services.AddSingleton<IEmailSender, FakeEmailSender>();
+
+        services.AddDbContext<LibraryContext>(opt =>
+            opt.UseSqlite(configuration.GetConnectionString("LibraryManagerDb")));
+
+        services.AddScoped<IUserRepository, UserEFRepository>();
+        services.AddScoped<IBookRepository, BookEFRepository>();
         return services;
     }
 

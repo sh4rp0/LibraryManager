@@ -20,7 +20,7 @@ public class BookQueryHandler : IRequestHandler<BookQuery, ErrorOr<Book>>
         await Task.CompletedTask;
 
         // Check if book already exists
-        var book = _bookRepository.GetBookById(request.Id);
+        var book = await _bookRepository.GetBookByIdAsync(request.Id);
 
         if (book is null)
         {

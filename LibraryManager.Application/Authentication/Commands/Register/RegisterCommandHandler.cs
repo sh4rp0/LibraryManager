@@ -25,7 +25,7 @@ public class RegisterCommandHandler :
         await Task.CompletedTask;
 
         // 1. Validate the user doesn't exist
-        if (_userRepository.GetUserByEmail(command.Email) is not null)
+        if (await _userRepository.GetUserByEmailAsync(command.Email) is not null)
         {
             return Errors.User.DuplicateEmail;
         }
@@ -40,7 +40,7 @@ public class RegisterCommandHandler :
             Password = command.Password
         };
 
-        _userRepository.Add(user);
+        await _userRepository.AddAsync(user);
 
         // 3. Create JWT token
         var token = _jwtTokenGenerator.GenerateToken(user);

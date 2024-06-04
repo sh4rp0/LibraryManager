@@ -16,7 +16,7 @@ namespace LibraryManager.Application.Books.Commands
 
         public async Task<ErrorOr<bool>> Handle(DeleteCommand request, CancellationToken cancellationToken)
         {
-            _bookRepository.DeleteBook(request.Id);
+            _bookRepository.DeleteBookAsync(request.Id);
 
             return true;
         }
