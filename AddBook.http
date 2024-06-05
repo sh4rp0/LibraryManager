@@ -1,5 +1,5 @@
 @host = http://localhost:5066
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYjNhNjVmYi03NDliLTRkYTgtYTkzNC01OWFmYjkxZTRlNWIiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiZGIyOTk2ODItNzJjMC00NjNiLWEyMDQtNWNjMTYyNGI0ZjIxIiwiZXhwIjoxNzE3NjAxMjU2LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.bhqsBfzPTljktz3XYjxyIohyK3MYlOcNOhIj0a6z7lY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYjNhNjVmYi03NDliLTRkYTgtYTkzNC01OWFmYjkxZTRlNWIiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiYTBhZTI1ZTEtY2M0Ni00OTFmLTkzY2ItODBlYTAyOGM0ZjgxIiwiZXhwIjoxNzE3NjA2MTI2LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.6AP5Ir-C8Fp7v7IWymZFvfhDfED1vWkkvMchjxy7FRk
 
 POST {{host}}/books
 Authorization: Bearer {{token}}
@@ -19,7 +19,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "title": "Móricko na ceste do sveta Simpanzov",
+    "title": "Móricako na ceste do sveta Simpanzov",
     "description": "",
     "author": "Devin Black",
     "isbn": "123-456-789-2",
