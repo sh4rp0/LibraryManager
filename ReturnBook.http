@@ -1,0 +1,12 @@
+@host = http://localhost:5066
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYjNhNjVmYi03NDliLTRkYTgtYTkzNC01OWFmYjkxZTRlNWIiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiYTQzNDJiOTgtMjNhYS00NzQ1LWJiZTItZWMwOTdhNjg5ODQ2IiwiZXhwIjoxNzE3NjA0Nzk3LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.-U1ggmYA4tG6wftO23QPUwawOrO9bwx6mIZQbBtQQ9w
+
+@id1 = 2
+PATCH {{host}}/borrowings/{{id1}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "id": {{id1}},
+    "isReturned": true
+}

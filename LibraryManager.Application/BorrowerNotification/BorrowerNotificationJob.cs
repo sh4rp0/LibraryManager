@@ -39,7 +39,7 @@ public class BorrowerNotificationJob : IJob
     {
         _logger.LogInformation("Job {Jobname} is running", nameof(BorrowerNotificationJob));
 
-        var date = _dateTimeProvider.UtcNow.Date.AddDays(-_notificationSettings.DaysDueUntilNotify);
+        var date = _dateTimeProvider.UtcNow.Date.AddDays(_notificationSettings.DaysDueUntilNotify);
         var dueBorrowings = await _borrowingRepository.GetAllNotReturnedForDueDateAsync(date);
 
         foreach(var borrowing in dueBorrowings)
@@ -55,7 +55,7 @@ public class BorrowerNotificationJob : IJob
 
             string title = "Your borrowed book is due to be returned";
             string body = $"Dear {user.FirstName}{Environment.NewLine}the book {book?.Title} you have borrowed" +
-                $" at GoofyLibrary at {borrowing.CreatedDateTime.ToString()} is due to be returned soon.{Environment.NewLine}" +
+                $" at GoofyLibrary at {borrowing.CreatedDateTime.ToLocalTime().ToString()} is due to be returned soon.{Environment.NewLine}" +
                 $"You have {_notificationSettings.DaysDueUntilNotify} days to return the book until penalty will be enacted.";
 
             await _emailSender.SendEmailAsync(user.Email, title, body);

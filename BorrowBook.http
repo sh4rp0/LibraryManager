@@ -1,0 +1,12 @@
+@host = http://localhost:5066
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYjNhNjVmYi03NDliLTRkYTgtYTkzNC01OWFmYjkxZTRlNWIiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiZGIyOTk2ODItNzJjMC00NjNiLWEyMDQtNWNjMTYyNGI0ZjIxIiwiZXhwIjoxNzE3NjAxMjU2LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.bhqsBfzPTljktz3XYjxyIohyK3MYlOcNOhIj0a6z7lY
+
+POST {{host}}/borrowings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId": "3b2a65fb-749b-4da8-a934-59afb91e4e5b",
+    "bookId": "3",
+    "maxDaysUntilReturn": 1
+}

@@ -10,95 +10,88 @@ using LibraryManager.Domain.Entities;
 using LibraryManager.Domain.Common.Errors;
 using LibraryManager.Application.Books.Queries;
 
-namespace LibraryManager.Api.Controllers
+namespace LibraryManager.Api.Controllers;
+
+[Route("books")]
+public class BooksController : ApiController
 {
-    [Route("books")]
-    public class BooksController : ApiController
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
+
+    public BooksController(IMediator mediator, IMapper mapper, ProblemDetailsFactory problemDetailsFactory) : base(problemDetailsFactory)
     {
-        private readonly ISender _mediator;
-        private readonly IMapper _mapper;
+        _mediator = mediator;
+        _mapper = mapper;
+    }
 
-        public BooksController(IMediator mediator, IMapper mapper, ProblemDetailsFactory problemDetailsFactory) : base(problemDetailsFactory)
+    [HttpPost()]
+    public async Task<IActionResult> AddBook(CreateBookRequest request)
+    {
+        var command = _mapper.Map<CreateCommand>(request);
+        ErrorOr<Book> createResult = await _mediator.Send(command);
+
+        if(createResult.IsError && createResult.FirstError == Errors.Book.DuplicateBook)
         {
-            _mediator = mediator;
-            _mapper = mapper;
+            return Problem(
+                statusCode: StatusCodes.Status409Conflict,
+                title: createResult.FirstError.Description);
         }
 
-        [HttpGet()]
-        public IActionResult ListBooks()
+        return createResult.Match(
+            createResult => CreatedAtRoute(createResult.Id ,_mapper.Map<BookResponse>(createResult)),
+            errors => Problem(errors));
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetBookById(int id)
+    {
+        ErrorOr<Book> getResult = await _mediator.Send(new BookQuery(id));
+
+        if (getResult.IsError && getResult.FirstError == Errors.Book.BookNotFound)
         {
-            return Ok(Array.Empty<string>());
+            return Problem(
+                statusCode: StatusCodes.Status404NotFound,
+                title: getResult.FirstError.Description);
         }
 
-        [HttpPost()]
-        public async Task<IActionResult> AddBook(CreateBookRequest request)
+        return getResult.Match(
+            createResult => Ok(_mapper.Map<BookResponse>(createResult)),
+            errors => Problem(errors));
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateBook(int id, UpdateBookRequest request)
+    {
+        if(id != request.Id)
         {
-            var command = _mapper.Map<CreateCommand>(request);
-            ErrorOr<Book> createResult = await _mediator.Send(command);
-
-            if(createResult.IsError && createResult.FirstError == Errors.Book.DuplicateBook)
-            {
-                return Problem(
-                    statusCode: StatusCodes.Status409Conflict,
-                    title: createResult.FirstError.Description);
-            }
-
-            return createResult.Match(
-                createResult => CreatedAtRoute(createResult.Id ,_mapper.Map<BookResponse>(createResult)),
-                errors => Problem(errors));
+            return BadRequest();
         }
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetBookById(int id)
+        var command = _mapper.Map<UpdateCommand>(request);
+        ErrorOr<Book> updateResult = await _mediator.Send(command);
+
+        if (updateResult.IsError && updateResult.FirstError == Errors.Book.BookNotFound)
         {
-            ErrorOr<Book> getResult = await _mediator.Send(new BookQuery(id));
-
-            if (getResult.IsError && getResult.FirstError == Errors.Book.BookNotFound)
-            {
-                return Problem(
-                    statusCode: StatusCodes.Status404NotFound,
-                    title: getResult.FirstError.Description);
-            }
-
-            return getResult.Match(
-                createResult => Ok(_mapper.Map<BookResponse>(createResult)),
-                errors => Problem(errors));
+            return Problem(
+                statusCode: StatusCodes.Status404NotFound,
+                title: updateResult.FirstError.Description);
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateBook(int id, UpdateBookRequest request)
+        return updateResult.Match(
+            updateResult => Ok(_mapper.Map<BookResponse>(updateResult)),
+            errors => Problem(errors));
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteBook(int id)
+    {
+        ErrorOr<bool> deleteResult = await _mediator.Send(new DeleteCommand(id));
+
+        if(deleteResult.IsError)
         {
-            if(id != request.Id)
-            {
-                return BadRequest();
-            }
-
-            var command = _mapper.Map<UpdateCommand>(request);
-            ErrorOr<Book> updateResult = await _mediator.Send(command);
-
-            if (updateResult.IsError && updateResult.FirstError == Errors.Book.BookNotFound)
-            {
-                return Problem(
-                    statusCode: StatusCodes.Status404NotFound,
-                    title: updateResult.FirstError.Description);
-            }
-
-            return updateResult.Match(
-                updateResult => Ok(_mapper.Map<BookResponse>(updateResult)),
-                errors => Problem(errors));
+            return Problem(deleteResult.Errors);
         }
 
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteBook(int id)
-        {
-            ErrorOr<bool> deleteResult = await _mediator.Send(new DeleteCommand(id));
-
-            if(deleteResult.IsError)
-            {
-                return Problem(deleteResult.Errors);
-            }
-
-            return NoContent();
-        }
+        return NoContent();
     }
 }

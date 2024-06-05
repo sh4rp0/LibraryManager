@@ -14,7 +14,7 @@ public class FakeEmailSender : IEmailSender
 
     public async Task SendEmailAsync(string email, string subject, string body)
     {
-        _logger.LogInformation("Sending email to {EmailAddress} with {Subject} and {Body}", email, subject, body);
+        _logger.LogInformation("Sending email to {EmailAddress} {Subject} : {Body}", email, subject, body);
         await Task.CompletedTask;
     }
 }
