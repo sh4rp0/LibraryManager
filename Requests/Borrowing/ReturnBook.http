@@ -1,12 +1,12 @@
 @host = http://localhost:5066
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmY2Q0Y2M2MS03ZmM3LTQxYTYtOTQ0MS00NTU3NmVhMTJiZmIiLCJnaXZlbl9uYW1lIjoiTWF0dXMiLCJmYW1pbHlfbmFtZSI6IlphcHJhem55IiwianRpIjoiNzI5Y2M2YzMtNDg2OS00MDk2LWJhOTAtNThhOTAxOTZkNGVjIiwiZXhwIjoxNzE3NjcxMjk4LCJpc3MiOiJMaWJyYXJ5TWFuYWdlciIsImF1ZCI6IkxpYnJhcnlNYW5hZ2VyIn0.9MqNpsUfzXt-7paIEKNDj4HYeGJhVhD_lhdU5tXQ04o
 
-POST {{host}}/borrowings
+@id1 = 4
+PATCH {{host}}/borrowings/{{id1}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "userId": "fcd4cc61-7fc7-41a6-9441-45576ea12bfb",
-    "bookId": "5",
-    "maxDaysUntilReturn": 1
+    "id": {{id1}},
+    "isReturned": true
 }
